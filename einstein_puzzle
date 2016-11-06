@@ -1,0 +1,26 @@
+%person(nation,color,pet,drink,cigarette)
+%road(person1,person2,person3,person4,person5)
+left(A,B,C):- 
+    append(_,[A,B|_],C).  
+neighbour(A,B,C):- 
+    left(A,B,C).
+neighbour(A,B,C):-    
+    left(B,A,C).
+
+find_fish_owner(X):-
+    ALL = [person(norwegian,_,_,_,_),person(_,_,_,_,_),person(_,_,_,milk,_),person(_,_,_,_,_),person(_,_,_,_,_)],
+    member(person(english,red,_,_,_),ALL),
+    member(person(swedish,_,dog,_,_),ALL),
+    member(person(dane,_,_,tea,_),ALL),
+    left(person(_,green,_,_,_),person(_,white,_,_,_),ALL),
+    member(person(_,green,_,coffee,_),ALL),
+    member(person(_,_,bird,_,pallmall),ALL),
+    member(person(_,yellow,_,_,dunhill),ALL),
+    neighbour(person(_,_,cat,_,_),person(_,_,_,_,blend),ALL),
+    neighbour(person(_,_,horse,_,_),person(_,_,_,_,dunhill),ALL),
+    member(person(_,_,_,beer,bluemaster),ALL),
+    member(person(german,_,_,_,prince),ALL),
+    neighbour(person(_,blue,_,_,_),person(norwegian,_,_,_,_),ALL),
+    neighbour(person(_,_,_,_,blend),person(_,_,_,water,_),ALL),
+    member(person(_,_,fish,_,_),ALL),
+    member(person(X,_,fish,_,_),ALL).
